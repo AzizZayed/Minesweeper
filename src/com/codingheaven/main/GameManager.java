@@ -15,8 +15,11 @@ public class GameManager extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private MinesweeperBoard board;
+	private MinesweeperBoard board; // the game board, so we can play...
 
+	/**
+	 * Constructor
+	 */
 	public GameManager() {
 
 		initialize();
@@ -24,10 +27,16 @@ public class GameManager extends JPanel {
 
 	}
 
+	/**
+	 * Initialize necessary objects
+	 */
 	private void initialize() {
 		board = new MinesweeperBoard();
 	}
 
+	/**
+	 * setup canvas size, settings and events
+	 */
 	private void canvasSetup() {
 		Dimension size = new Dimension(board.WIDTH, board.HEIGHT);
 
@@ -54,12 +63,12 @@ public class GameManager extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char key = e.getKeyChar();
-				
+
 				if (key == 'r')
 					initialize();
-				
+
 				repaint();
-				
+
 			}
 		});
 	}
@@ -67,16 +76,17 @@ public class GameManager extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		drawBackground(g);
-		drawGame(g);
+		board.draw(g); // draw game
 	}
 
+	/**
+	 * draw the background
+	 * 
+	 * @param g, tool to draw
+	 */
 	private void drawBackground(Graphics g) {
 		g.setColor(Color.white);
 		g.fillRect(0, 0, board.WIDTH, board.HEIGHT);
-	}
-
-	private void drawGame(Graphics g) {
-		board.draw(g);
 	}
 
 	public static void main(String args[]) {
