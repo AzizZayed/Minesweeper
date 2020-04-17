@@ -9,13 +9,19 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+/**
+ * the actual game class
+ * 
+ * @author Zayed
+ *
+ */
 public class MinesweeperBoard {
 
-	public final int CELL_SIZE = 50; // size of a single cell in pixels
-	public final int GRID_WIDTH = 8; // width of a board in cells
-	public final int GRID_HEIGHT = 8; // height of a board in cells
-	public final int WIDTH = CELL_SIZE * GRID_WIDTH; // width of the board in pixels
-	public final int HEIGHT = CELL_SIZE * GRID_HEIGHT;// height of the board in pixels
+	private final int CELL_SIZE = 50; // size of a single cell in pixels
+	private final int GRID_WIDTH = 8; // width of a board in cells
+	private final int GRID_HEIGHT = 8; // height of a board in cells
+	private final int WIDTH = CELL_SIZE * GRID_WIDTH; // width of the board in pixels
+	private final int HEIGHT = CELL_SIZE * GRID_HEIGHT;// height of the board in pixels
 
 	private int nMines = 9; // number of mines
 	private int nClicks = 0; // number of clicks done by the user
@@ -30,7 +36,7 @@ public class MinesweeperBoard {
 	/**
 	 * Class to contain properties and methods for each cell
 	 * 
-	 * @author Abd-El-Aziz Zayed
+	 * @author Zayed
 	 *
 	 */
 	private class Cell {
@@ -42,9 +48,9 @@ public class MinesweeperBoard {
 		/**
 		 * Draw the cell
 		 * 
-		 * @param g, tool to draw
-		 * @param i, cell horizontal position in data structure (array)
-		 * @param j, cell vertical position in data structure (array)
+		 * @param g - tool to draw
+		 * @param i - cell horizontal position in data structure (array)
+		 * @param j - cell vertical position in data structure (array)
 		 */
 		public void draw(Graphics g, int i, int j) {
 			BufferedImage img;
@@ -82,6 +88,20 @@ public class MinesweeperBoard {
 	public MinesweeperBoard() {
 		loadImages();
 		createField();
+	}
+
+	/**
+	 * @return the WIDTH
+	 */
+	public int getWidth() {
+		return WIDTH;
+	}
+
+	/**
+	 * @return the HEIGHT
+	 */
+	public int getHeight() {
+		return HEIGHT;
 	}
 
 	/**
@@ -125,8 +145,8 @@ public class MinesweeperBoard {
 	 * Create the field after the first click, to make sure you don't click a mine
 	 * on your first try
 	 *
-	 * @param k, horizontal position of the first click
-	 * @param w, vertical position of the first click
+	 * @param k - horizontal position of the first click
+	 * @param w - vertical position of the first click
 	 */
 	private void initializeField(int k, int w) {
 		field[k][w].nMine = 0;
@@ -179,9 +199,9 @@ public class MinesweeperBoard {
 	/**
 	 * the board is clicked, process the click
 	 * 
-	 * @param x,           pixel position of mouse click
-	 * @param y,           pixel position of mouse click
-	 * @param mouseButton, info on which button is clicked
+	 * @param x           - pixel position of mouse click
+	 * @param y           - pixel position of mouse click
+	 * @param mouseButton - info on which button is clicked
 	 */
 	public void clicked(int x, int y, int mouseButton) {
 		if (lost || won)
@@ -250,8 +270,8 @@ public class MinesweeperBoard {
 	/**
 	 * Uncover all the non-mine cells around a current cell, recursive algorithm
 	 * 
-	 * @param i, current cell horizontal position
-	 * @param j, current cell vertical position
+	 * @param i - current cell horizontal position
+	 * @param j - current cell vertical position
 	 */
 	private void uncover(int i, int j) {
 		field[i][j].isCovered = false;
@@ -276,7 +296,7 @@ public class MinesweeperBoard {
 	/**
 	 * Draw the game
 	 * 
-	 * @param g, tool to draw
+	 * @param g - tool to draw
 	 */
 	public void draw(Graphics g) {
 

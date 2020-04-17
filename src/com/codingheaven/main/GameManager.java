@@ -11,6 +11,12 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * main class, manages the input and drawing
+ * 
+ * @author Zayed
+ *
+ */
 public class GameManager extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -38,7 +44,7 @@ public class GameManager extends JPanel {
 	 * setup canvas size, settings and events
 	 */
 	private void canvasSetup() {
-		Dimension size = new Dimension(board.WIDTH, board.HEIGHT);
+		Dimension size = new Dimension(board.getWidth(), board.getHeight());
 
 		this.setPreferredSize(size);
 		this.setMaximumSize(size);
@@ -46,6 +52,9 @@ public class GameManager extends JPanel {
 
 		this.setFocusable(true);
 
+		/*
+		 * Listen for clicks
+		 */
 		this.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -58,6 +67,10 @@ public class GameManager extends JPanel {
 				repaint();
 			}
 		});
+
+		/*
+		 * listen for key presses
+		 */
 		this.addKeyListener(new KeyAdapter() {
 
 			@Override
@@ -82,13 +95,18 @@ public class GameManager extends JPanel {
 	/**
 	 * draw the background
 	 * 
-	 * @param g, tool to draw
+	 * @param g - tool to draw
 	 */
 	private void drawBackground(Graphics g) {
 		g.setColor(Color.white);
-		g.fillRect(0, 0, board.WIDTH, board.HEIGHT);
+		g.fillRect(0, 0, board.getWidth(), board.getHeight());
 	}
 
+	/**
+	 * main method
+	 * 
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		JFrame frame = new JFrame("Minesweeper");
 		GameManager game = new GameManager();
